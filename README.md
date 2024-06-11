@@ -84,6 +84,8 @@ l.	Wie viele Schüler russischer Nationalität unterrichtet Frau Zelawat?
 m.	Welcher Lehrer verdient am meisten? (Achtung: Falle! Überprüfen Sie Ihr Ergebnis.)
 
 
+Lösungen
+
 a. SELECT MIN(gehalt) AS niedrigstes_gehalt, MAX(gehalt) AS hoechstes_gehalt
 FROM lehrer;
 
@@ -101,6 +103,34 @@ FROM ort;
 
 e. SELECT (MAX(einwohnerzahl) - MIN(einwohnerzahl)) AS differenz
 FROM ort;
+
+f. SELECT COUNT(*) AS anzahl_schueler
+FROM schueler;
+
+g. SELECT COUNT(*) AS anzahl_schueler_mit_smartphone
+FROM schueler
+WHERE besitztSmartphone = 1;
+
+h.  SELECT COUNT(*) AS anzahl_schueler_mit_samsung_or_htc
+FROM schueler s
+JOIN smartphones v ON s.id = v.schueler_id
+WHERE v.marke IN ('Samsung',
+
+i. 
+### i. Wie viele Schüler wohnen in Waldkirch?
+
+```sql
+SELECT COUNT(*) AS anzahl_schueler_in_waldkirch
+FROM schueler s
+JOIN ort o ON s.wohnort_id = o.id
+WHERE o.name = 'Waldkirch';
+
+
+
+
+
+
+
 
 
 
