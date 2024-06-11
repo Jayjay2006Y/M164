@@ -56,9 +56,10 @@ INNER JOIN ort AS o
 ON k.fk_ort_postleitzahl = o.id_postleitzahl
 WHERE o.name LIKE '%';  -- Placeholder for LIKE pattern
 
-2. ![image](https://github.com/Jayjay2006Y/M164/assets/169802570/99750fba-cc71-4d55-9818-f3fd3b4264dc)
+2. Aufgabe
+   ![image](https://github.com/Jayjay2006Y/M164/assets/169802570/99750fba-cc71-4d55-9818-f3fd3b4264dc)
 
 
 
 
-Aufgaben
+
