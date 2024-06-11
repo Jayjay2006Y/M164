@@ -30,19 +30,4 @@ ON DELETE DEFAULT: Fremdschlüssel werden auf einen Default-Wert gesetzt.
 Aufgaben
 Löschen in Datenbanken:
 
-Vermeidung des SQL DELETE-Befehls.
-Datensätze als inaktiv markieren oder Austrittsdaten hinzufügen.
-Historie und Beziehungen erhalten.
-Datenintegrität:
-
-Eindeutigkeit/Datenkonsistenz, referenzielle Integrität, korrekte Datentypen, Datenbeschränkungen, Validierung.
-FK-Constraint-Optionen:
-
-NO ACTION, CASCADE, SET NULL, DEFAULT.
-Regeln für ON DELETE und ON UPDATE.
-Auftrag Referentielle Integrität:
-
-Umsetzung anhand der angegebenen Aufgaben.
-Auftrag Referentielle Integrität Fortgeschritten:
-
-Umsetzung anhand der angegebenen Aufgaben.
+Aufgaben
