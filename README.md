@@ -30,4 +30,35 @@ ON DELETE DEFAULT: Fremdschlüssel werden auf einen Default-Wert gesetzt.
 Aufgaben
 Löschen in Datenbanken:
 
+1. Select Alias
+
+SELECT
+FROM kunden AS kundentiste
+WHERE kundentiste > 80000
+
+SELECT kunde_id, name, postleitzahl
+FROM kunden AS kundentiste
+WHERE kundentiste.kunde_id > 80000;
+
+2.
+
+SELECT o.name,
+FROM
+ON
+k. name,
+AS
+_ INNER JOIN
+WHERE o.name LIKE
+
+SELECT o.name, k.name
+FROM kunden AS k
+INNER JOIN ort AS o
+ON k.fk_ort_postleitzahl = o.id_postleitzahl
+WHERE o.name LIKE '%';  -- Placeholder for LIKE pattern
+
+2. ![image](https://github.com/Jayjay2006Y/M164/assets/169802570/99750fba-cc71-4d55-9818-f3fd3b4264dc)
+
+
+
+
 Aufgaben
