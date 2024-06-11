@@ -63,3 +63,31 @@ WHERE o.name LIKE '%';  -- Placeholder for LIKE pattern
 
 
 
+
+
+
+
+
+Setzen Sie diese Aufgaben um:
+a.	Welches ist das niedrigste/höchste Gehalt eines Lehrers?
+b.	Was ist das niedrigste Gehalt, das einer unserer Mathelehrer bekommt?
+c.	Was ist der beste Notendurchschnitt der Noten Deutsch/Mathe?
+d.	Wie viel Einwohner hat der größte Ort, wie viel der Kleinste? Ausgabe "Höchste Einwohnerzahl", "Niedrigste Einwohnerzahl"
+e.	Wie groß ist die Differenz zwischen dem Ort mit den meisten und dem mit den wenigsten Einwohnern (z.B.: kleinster Ort hat 1000 Einwohner, größter Ort hat 3000 - Differenz ist 2000). Ausgabe einer Spalte "Differenz".
+f.	Wie viele Schüler haben wir in der Datenbank?
+g.	Wie viele Schüler haben ein Smartphone?
+h.	Wie viele Schüler haben ein Smartphone der Firma Samsung oder der Firma HTC?
+i.	Wie viele Schüler wohnen in Waldkirch?
+j.	Wie viele Schüler, die bei Herrn Bohnert Unterricht haben, wohnen in Emmendingen?
+k.	Wie viele Schüler unterrichtet Frau Zelawat?
+l.	Wie viele Schüler russischer Nationalität unterrichtet Frau Zelawat?
+m.	Welcher Lehrer verdient am meisten? (Achtung: Falle! Überprüfen Sie Ihr Ergebnis.)
+
+
+a. SELECT MIN(gehalt) AS niedrigstes_gehalt, MAX(gehalt) AS hoechstes_gehalt
+FROM lehrer;
+
+
+
+
+
