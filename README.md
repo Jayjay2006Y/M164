@@ -33,7 +33,7 @@ Löschen in Datenbanken:
 1. Select Alias
 
 SELECT
-FROM kunden AS kundentiste
+FROM kunden AS kundenliste
 WHERE kundentiste > 80000
 
 SELECT kunde_id, name, postleitzahl
@@ -86,6 +86,25 @@ m.	Welcher Lehrer verdient am meisten? (Achtung: Falle! Überprüfen Sie Ihr Erg
 
 a. SELECT MIN(gehalt) AS niedrigstes_gehalt, MAX(gehalt) AS hoechstes_gehalt
 FROM lehrer;
+
+b. SELECT MIN(gehalt) AS niedrigstes_gehalt
+FROM lehrer l
+JOIN lehrer_zugeordnet_faecher lzf ON l.id = lzf.idLehrer
+JOIN faecher f ON lzf.idFach = f.id
+WHERE f.fachbezeichnung = 'Mathe';
+
+c. SELECT MIN((noteMathe + noteDeutsch) / 2.0) AS bester_notendurchschnitt
+FROM schueler;
+
+d. SELECT MAX(einwohnerzahl) AS hoechste_einwohnerzahl, MIN(einwohnerzahl) AS niedrigste_einwohnerzahl
+FROM ort;
+
+e. SELECT (MAX(einwohnerzahl) - MIN(einwohnerzahl)) AS differenz
+FROM ort;
+
+
+
+
 
 
 
