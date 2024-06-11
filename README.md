@@ -11,4 +11,38 @@
 6. Tabellarische Darstellung von Mitarbeiterdaten mit verschiedenen Attributen.
 
 
+Löschen in professionellen Datenbanken
+Der SQL DELETE-Befehl führt zu Informationsverlust.
+Das Löschen von Datensätzen führt zum Verlust von Beziehungen und Historie.
+Alternative: Datensätze als inaktiv markieren oder Austrittsdaten hinzufügen.
+Beispiel: Anstatt Mitarbeiterdaten zu löschen, ein Austrittsdatum eintragen.
+Datenintegrität
+Eindeutigkeit/Datenkonsistenz: Vermeidung von Duplikaten.
+Referenzielle Integrität: Konsistenz zwischen verknüpften Tabellen.
+Datentypen: Verwendung korrekter Datentypen für Felder.
+Datenbeschränkungen: Sicherstellung der Validität der Daten.
+Validierung: Prüfung der Daten vor dem Einfügen.
+FK-Constraint-Optionen
+ON DELETE NO ACTION: Löschen nur möglich, wenn kein Fremdschlüssel existiert.
+ON DELETE CASCADE: Löschen führt zum Löschen verknüpfter Datensätze.
+ON DELETE SET NULL: Fremdschlüssel werden auf NULL gesetzt.
+ON DELETE DEFAULT: Fremdschlüssel werden auf einen Default-Wert gesetzt.
+Aufgaben
+Löschen in Datenbanken:
 
+Vermeidung des SQL DELETE-Befehls.
+Datensätze als inaktiv markieren oder Austrittsdaten hinzufügen.
+Historie und Beziehungen erhalten.
+Datenintegrität:
+
+Eindeutigkeit/Datenkonsistenz, referenzielle Integrität, korrekte Datentypen, Datenbeschränkungen, Validierung.
+FK-Constraint-Optionen:
+
+NO ACTION, CASCADE, SET NULL, DEFAULT.
+Regeln für ON DELETE und ON UPDATE.
+Auftrag Referentielle Integrität:
+
+Umsetzung anhand der angegebenen Aufgaben.
+Auftrag Referentielle Integrität Fortgeschritten:
+
+Umsetzung anhand der angegebenen Aufgaben.
