@@ -117,13 +117,47 @@ JOIN smartphones v ON s.id = v.schueler_id
 WHERE v.marke IN ('Samsung',
 
 i. 
-### i. Wie viele Schüler wohnen in Waldkirch?
-
-```sql
-SELECT COUNT(*) AS anzahl_schueler_in_waldkirch
+SELECT COUNT(*) AS anzahl_schueler_mit_samsung_or_htc
 FROM schueler s
+JOIN smartphones v ON s.id = v.schueler_id
+WHERE v.marke IN ('Samsung',
+
+j.
+
+SELECT COUNT(*) AS anzahl_schueler_in_emmendingen
+FROM schueler s
+JOIN lehrer_zugeordnet_schueler lzs ON s.id = lzs.schueler_id
+JOIN lehrer l ON lzs.lehrer_id = l.id
 JOIN ort o ON s.wohnort_id = o.id
-WHERE o.name = 'Waldkirch';
+WHERE l.name = 'Bohnert' AND o.name = 'Emmendingen';
+
+
+k.
+
+SELECT COUNT(*) AS anzahl_schueler_unterrichtet_von_zelawat
+FROM schueler s
+JOIN lehrer_zugeordnet_schueler lzs ON s.id = lzs.schueler_id
+JOIN lehrer l ON lzs.lehrer_id = l.id
+WHERE l.name = 'Zelawat';
+
+
+l.
+
+SELECT COUNT(*) AS anzahl_russische_schueler_unterrichtet_von_zelawat
+FROM schueler s
+JOIN lehrer_zugeordnet_schueler lzs ON s.id = lzs.schueler_id
+JOIN lehrer l ON lzs.lehrer_id = l.id
+WHERE l.name = 'Zelawat' AND s.nationalitaet = 'RUS';
+
+
+m.
+
+SELECT l.id, l.name, l.gehalt
+FROM lehrer l
+WHERE l.gehalt = (SELECT MAX(gehalt) FROM lehrer);
+
+
+
 
 
 
