@@ -262,6 +262,9 @@ Auftrag mit Tutorial
 3. Versuchen Sie, das CSV File Personen in eine Tabelle einzulesen. Untersuchen Sie die CSV-Datei zuerst: Trennzeichen(Delimiter), ", Spaltennamen, Zeichensatz, Datumformat, ...
    Untersuchen
 
+4. Kontrollieren Sie, ob 500 Zeilen korrekt importiert wurden.
+   Kontrollieren
+
   
    
 
