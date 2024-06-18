@@ -156,6 +156,21 @@ SELECT l.id, l.name, l.gehalt
 FROM lehrer l
 WHERE l.gehalt = (SELECT MAX(gehalt) FROM lehrer);
 
+Tag 6
+
+1.
+1.1 Welches ist das teuerste Buch in der Datenbank?
+  SELECT titel, verkaufspreis
+FROM buecher
+ORDER BY verkaufspreis DESC
+LIMIT 1;
+1.2 Welches ist das billigste Buch in der Datenbank?
+  SELECT titel, verkaufspreis
+FROM buecher
+ORDER BY verkaufspreis ASC
+LIMIT 1;
+
+
 
 
 
