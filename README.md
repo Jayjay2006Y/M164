@@ -160,60 +160,61 @@ Tag 6
 
 Teil 1 (Skalare Subquery)
 1 Welches ist das teuerste Buch in der Datenbank?
-  SELECT titel, verkaufspreis
-FROM buecher
-ORDER BY verkaufspreis DESC
-LIMIT 1;
+  
+  SELECT * FROM buecher WHERE einkaufspreis = (SELECT MAX(einkaufspreis) FROM buecher);
+ 
 
 1 Welches ist das billigste Buch in der Datenbank?
-  SELECT titel, verkaufspreis
-FROM buecher
-ORDER BY verkaufspreis ASC
-LIMIT 1;
+
+  SELECT * FROM buecher WHERE einkaufspreis = (SELECT MIN(einkaufspreis) FROM buecher);
+ 
 
 1 Lassen Sie sich alle Bücher ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis aller Bücher in der Datenbank liegt.
 
-SELECT titel, einkaufspreis
-FROM buecher
-WHERE einkaufspreis > (SELECT AVG(einkaufspreis) FROM buecher);
-
+SELECT * FROM buecher WHERE einkaufspreis > (SELECT AVG(einkaufspreis) FROM buecher);
+SELECT b.*
+FROM buecher b
+JOIN buecher_has_sparten bs ON b.buecher_id = bs.buecher_buecher_id
+JOIN sparten s ON s.sparten_id = bs.sparten_sparten_id
+WHERE s.bezeichnung = 'Thriller';
+ 
 
   1 Lassen Sie sich alle Bücher ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis der Thriller liegt.
 sql.
 
-SELECT b.titel, b.einkaufspreis
+SELECT b.*
 FROM buecher b
-JOIN buecher_has_sparten bhs ON b.buecher_id = bhs.buecher_buecher_id
-JOIN sparten s ON bhs.sparten_sparten_id = s.sparten_id
-WHERE s.bezeichnung = 'Thriller'
-  AND b.einkaufspreis > (SELECT AVG(b2.einkaufspreis)
-                         FROM buecher b2
-                         JOIN buecher_has_sparten bhs2 ON b2.buecher_id = bhs2.buecher_buecher_id
-                         JOIN sparten s2 ON bhs2.sparten_sparten_id = s2.sparten_id
-                         WHERE s2.bezeichnung = 'Thriller');
+JOIN buecher_has_sparten bs ON b.buecher_id = bs.buecher_buecher_id
+JOIN sparten s ON s.sparten_id = bs.sparten_sparten_id
+WHERE s.bezeichnung = 'Thriller' AND b.einkaufspreis > (
+    SELECT AVG(b2.einkaufspreis)
+    FROM buecher b2
+    JOIN buecher_has_sparten bs2 ON b2.buecher_id = bs2.buecher_buecher_id
+    JOIN sparten s2 ON s2.sparten_id = bs2.sparten_sparten_id
+    WHERE s2.bezeichnung = 'Thriller'
+);
 
 
   1 Lassen Sie sich alle Thriller ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis der Thriller liegt.
 
-  SELECT b.titel, b.einkaufspreis
+  
+SELECT b.*
 FROM buecher b
-JOIN buecher_has_sparten bhs ON b.buecher_id = bhs.buecher_buecher_id
-JOIN sparten s ON bhs.sparten_sparten_id = s.sparten_id
-WHERE s.bezeichnung = 'Thriller'
-  AND b.einkaufspreis > (SELECT AVG(b2.einkaufspreis)
-                         FROM buecher b2
-                         JOIN buecher_has_sparten bhs2 ON b2.buecher_id = bhs2.buecher_buecher_id
-                         JOIN sparten s2 ON bhs2.sparten_sparten_id = s2.sparten_id
-                         WHERE s2.bezeichnung = 'Thriller');
+JOIN buecher_has_sparten bs ON b.buecher_id = bs.buecher_buecher_id
+JOIN sparten s ON s.sparten_id = bs.sparten_sparten_id
+WHERE b.einkaufspreis > (
+    SELECT AVG(b2.einkaufspreis)
+    FROM buecher b2
+    JOIN buecher_has_sparten bs2 ON b2.buecher_id = bs2.buecher_buecher_id
+    JOIN sparten s2 ON s2.sparten_id = bs2.sparten_sparten_id
+    WHERE s2.bezeichnung = 'Thriller'
+);
 
 
   1 Lassen Sie sich alle Bücher ausgeben, bei denen der Gewinn überdurchschnittlich ist; bei der Berechnung des Gewinndurchschnitts berücksichtigen Sie NICHT das Buch mit der id 22.
 
-  SELECT titel, (verkaufspreis - einkaufspreis) AS gewinn
-FROM buecher
-WHERE (verkaufspreis - einkaufspreis) > (SELECT AVG(verkaufspreis - einkaufspreis)
-                                         FROM buecher
-                                         WHERE buecher_id != 22);
+SELECT * FROM buecher WHERE (verkaufspreis - einkaufspreis) > (SELECT AVG(verkaufspreis - einkaufspreis) FROM buecher WHERE buecher_id != 22);
+ 
 
 Teil 2 (Subquery nach FROM)
 
