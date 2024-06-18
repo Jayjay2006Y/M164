@@ -274,7 +274,22 @@ Auftrag mit Tutorial
 6. Zum Schluss löschen Sie die Datenbasis mit einem SQL-Befehl.
 
 DELETE FROM tablename; -- Ersetzen Sie "tablename" durch den tatsächlichen Namen der Tabelle
-   
+
+Checkpoints
+
+1. Subqueries: Subqueries werden verwendet, um komplexe Abfragen zu formulieren, die Ergebnisse aus einer inneren Abfrage verwenden, um die Ergebnisse einer äußeren Abfrage zu beeinflussen. Sie sind besonders nützlich für komplexe Filterbedingungen oder zur Aggregation von Daten.
+
+2. Skalare vs. nicht-skalare Subqueries:
+
+3. Skalare Subqueries geben genau eine Zeile und eine Spalte zurück und werden oft in Bedingungen verwendet.
+Nicht-skalare Subqueries können mehrere Zeilen und Spalten zurückgeben und sind typischerweise in IN, EXISTS oder ANY/ALL Bedingungen zu finden.
+IGNORE 1 LINES in LOAD DATA INFILE: Ignoriert die erste Zeile einer Datei beim Import mit LOAD DATA INFILE, was nützlich ist, wenn die erste Zeile eine Headerzeile oder Meta-Informationen enthält, die nicht importiert werden sollen.
+
+4. LINES TERMINATED BY '/n' für Windows-CSV-Datei: Kann zu Problemen führen, da Windows-Dateien üblicherweise mit CRLF (Carriage Return + Line Feed) enden. /n könnte zu Fehlern führen, insbesondere für die letzte Spalte, wenn die letzte Zeile nicht vollständig ist.
+
+5. Einstellungen für Client-Import von CSV-Dateien: Der Server benötigt entsprechende Zugriffsrechte und Berechtigungen, damit ein Client eine CSV-Datei zum Importieren übermitteln kann. Zugriff auf das Importverzeichnis und LOAD DATA INFILE Berechtigungen sind erforderlich.
+
+6. Importieren von Spalten in anderer Reihenfolge: Beim Import mit LOAD DATA INFILE müssen die Spalten in der gleichen Reihenfolge wie in der CSV-Datei oder explizit angegeben werden, um Spalten in eine andere Reihenfolge zu importieren.
 
   
    
