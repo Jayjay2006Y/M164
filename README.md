@@ -173,12 +173,48 @@ LIMIT 1;
 
 1.3 Lassen Sie sich alle Bücher ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis aller Bücher in der Datenbank liegt.
 
+SELECT titel, einkaufspreis
+FROM buecher
+WHERE einkaufspreis > (SELECT AVG(einkaufspreis) FROM buecher);
+
+
   1.4 Lassen Sie sich alle Bücher ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis der Thriller liegt.
-sql
+sql.
+
+SELECT b.titel, b.einkaufspreis
+FROM buecher b
+JOIN buecher_has_sparten bhs ON b.buecher_id = bhs.buecher_buecher_id
+JOIN sparten s ON bhs.sparten_sparten_id = s.sparten_id
+WHERE s.bezeichnung = 'Thriller'
+  AND b.einkaufspreis > (SELECT AVG(b2.einkaufspreis)
+                         FROM buecher b2
+                         JOIN buecher_has_sparten bhs2 ON b2.buecher_id = bhs2.buecher_buecher_id
+                         JOIN sparten s2 ON bhs2.sparten_sparten_id = s2.sparten_id
+                         WHERE s2.bezeichnung = 'Thriller');
+
 
   1.5 Lassen Sie sich alle Thriller ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis der Thriller liegt.
 
+  SELECT b.titel, b.einkaufspreis
+FROM buecher b
+JOIN buecher_has_sparten bhs ON b.buecher_id = bhs.buecher_buecher_id
+JOIN sparten s ON bhs.sparten_sparten_id = s.sparten_id
+WHERE s.bezeichnung = 'Thriller'
+  AND b.einkaufspreis > (SELECT AVG(b2.einkaufspreis)
+                         FROM buecher b2
+                         JOIN buecher_has_sparten bhs2 ON b2.buecher_id = bhs2.buecher_buecher_id
+                         JOIN sparten s2 ON bhs2.sparten_sparten_id = s2.sparten_id
+                         WHERE s2.bezeichnung = 'Thriller');
+
+
   1.6 Lassen Sie sich alle Bücher ausgeben, bei denen der Gewinn überdurchschnittlich ist; bei der Berechnung des Gewinndurchschnitts berücksichtigen Sie NICHT das Buch mit der id 22.
+
+  SELECT titel, (verkaufspreis - einkaufspreis) AS gewinn
+FROM buecher
+WHERE (verkaufspreis - einkaufspreis) > (SELECT AVG(verkaufspreis - einkaufspreis)
+                                         FROM buecher
+                                         WHERE buecher_id != 22);
+
 
 
 
