@@ -265,6 +265,13 @@ Auftrag mit Tutorial
 4. Kontrollieren Sie, ob 500 Zeilen korrekt importiert wurden.
    Kontrollieren
 
+5. Versuchen Sie auch, weitere 100 DS aus dem Personen_DE File in die Datenbank-Tabelle einzulesen. Warum gibt es Fehler?
+   Zeichensatzprobleme
+   Falsches Trennzeichen
+   Fehlende oder abweichende Spaltennamen
+   Ungültige Datenformat
+   
+
   
    
 
