@@ -164,11 +164,21 @@ Tag 6
 FROM buecher
 ORDER BY verkaufspreis DESC
 LIMIT 1;
+
 1.2 Welches ist das billigste Buch in der Datenbank?
   SELECT titel, verkaufspreis
 FROM buecher
 ORDER BY verkaufspreis ASC
 LIMIT 1;
+
+1.3 Lassen Sie sich alle Bücher ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis aller Bücher in der Datenbank liegt.
+
+  1.4 Lassen Sie sich alle Bücher ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis der Thriller liegt.
+sql
+
+  1.5 Lassen Sie sich alle Thriller ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis der Thriller liegt.
+
+  1.6 Lassen Sie sich alle Bücher ausgeben, bei denen der Gewinn überdurchschnittlich ist; bei der Berechnung des Gewinndurchschnitts berücksichtigen Sie NICHT das Buch mit der id 22.
 
 
 
