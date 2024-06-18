@@ -231,15 +231,16 @@ WHERE bezeichnung != 'Humor' AND avg_price > 10;
 
 2. Anzahl der bekannten Autoren (mehr als 4 Bücher veröffentlicht)
 
-   SELECT COUNT(*) AS anzahl_bekannte_autoren
+  
+SELECT COUNT(*) AS AnzahlBekannterAutoren
 FROM (
-    SELECT a.vorname, a.nachname, COUNT(ab.buecher_buecher_id) AS anzahl_buecher
+    SELECT a.vorname, a.nachname, COUNT(*) AS AnzahlBuecher
     FROM autoren a
-    JOIN autoren_has_buecher ab ON a.autoren_id = ab.autoren_autoren_id
+    JOIN autoren_has_buecher ahb ON a.autoren_id = ahb.autoren_autoren_id
     GROUP BY a.autoren_id
-    HAVING anzahl_buecher > 4
-) AS subquery;
-
+    HAVING AnzahlBuecher > 4
+) AS BekannteAutoren;
+ 
 3.  Verlage mit durchschnittlichem Gewinn pro Buch < 10 Euro (und Überprüfung, ob diese im Schnitt höchstens 7 Euro pro Buch verdienen)
 
    SELECT AVG(gewinn) AS avg_gewinn
