@@ -270,6 +270,10 @@ Auftrag mit Tutorial
    Falsches Trennzeichen
    Fehlende oder abweichende Spaltennamen
    Ungültige Datenformat
+
+6. Zum Schluss löschen Sie die Datenbasis mit einem SQL-Befehl.
+
+DELETE FROM tablename; -- Ersetzen Sie "tablename" durch den tatsächlichen Namen der Tabelle
    
 
   
