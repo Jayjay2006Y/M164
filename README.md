@@ -164,12 +164,12 @@ Teil 1 (Skalare Subquery)
   SELECT * FROM buecher WHERE einkaufspreis = (SELECT MAX(einkaufspreis) FROM buecher);
  
 
-1 Welches ist das billigste Buch in der Datenbank?
+2 Welches ist das billigste Buch in der Datenbank?
 
   SELECT * FROM buecher WHERE einkaufspreis = (SELECT MIN(einkaufspreis) FROM buecher);
  
 
-1 Lassen Sie sich alle Bücher ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis aller Bücher in der Datenbank liegt.
+3 Lassen Sie sich alle Bücher ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis aller Bücher in der Datenbank liegt.
 
 SELECT * FROM buecher WHERE einkaufspreis > (SELECT AVG(einkaufspreis) FROM buecher);
 SELECT b.*
@@ -179,7 +179,7 @@ JOIN sparten s ON s.sparten_id = bs.sparten_sparten_id
 WHERE s.bezeichnung = 'Thriller';
  
 
-  1 Lassen Sie sich alle Bücher ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis der Thriller liegt.
+  4 Lassen Sie sich alle Bücher ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis der Thriller liegt.
 sql.
 
 SELECT b.*
@@ -195,7 +195,7 @@ WHERE s.bezeichnung = 'Thriller' AND b.einkaufspreis > (
 );
 
 
-  1 Lassen Sie sich alle Thriller ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis der Thriller liegt.
+  5 Lassen Sie sich alle Thriller ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis der Thriller liegt.
 
   
 SELECT b.*
@@ -211,25 +211,23 @@ WHERE b.einkaufspreis > (
 );
 
 
-  1 Lassen Sie sich alle Bücher ausgeben, bei denen der Gewinn überdurchschnittlich ist; bei der Berechnung des Gewinndurchschnitts berücksichtigen Sie NICHT das Buch mit der id 22.
+  6 Lassen Sie sich alle Bücher ausgeben, bei denen der Gewinn überdurchschnittlich ist; bei der Berechnung des Gewinndurchschnitts berücksichtigen Sie NICHT das Buch mit der id 22.
 
 SELECT * FROM buecher WHERE (verkaufspreis - einkaufspreis) > (SELECT AVG(verkaufspreis - einkaufspreis) FROM buecher WHERE buecher_id != 22);
  
 
 Teil 2 (Subquery nach FROM)
 
-1. Summe der durchschnittlichen Einkaufspreise der Sparten (ohne Humor und Sparten mit durchschnittlichem Einkaufspreis ≤ 10 Euro)
-
-SELECT SUM(avg_einkaufspreis) AS sum_avg_einkaufspreis
+1.SELECT SUM(avg_price)
 FROM (
-    SELECT s.bezeichnung, AVG(b.einkaufspreis) AS avg_einkaufspreis
+    SELECT s.bezeichnung, AVG(b.einkaufspreis) as avg_price
     FROM buecher b
-    JOIN buecher_has_sparten bhs ON b.buecher_id = bhs.buecher_buecher_id
-    JOIN sparten s ON bhs.sparten_sparten_id = s.sparten_id
-    WHERE s.bezeichnung != 'Humor'
+    JOIN buecher_has_sparten bs ON b.buecher_id = bs.buecher_buecher_id
+    JOIN sparten s ON s.sparten_id = bs.sparten_sparten_id
     GROUP BY s.bezeichnung
-    HAVING avg_einkaufspreis > 10
-) AS subquery;
+) subquery
+WHERE bezeichnung != 'Humor' AND avg_price > 10;
+ 
 
 2. Anzahl der bekannten Autoren (mehr als 4 Bücher veröffentlicht)
 
