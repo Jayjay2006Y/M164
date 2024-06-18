@@ -158,27 +158,27 @@ WHERE l.gehalt = (SELECT MAX(gehalt) FROM lehrer);
 
 Tag 6
 
-1.
-1.1 Welches ist das teuerste Buch in der Datenbank?
+Teil 1 (Skalare Subquery)
+1 Welches ist das teuerste Buch in der Datenbank?
   SELECT titel, verkaufspreis
 FROM buecher
 ORDER BY verkaufspreis DESC
 LIMIT 1;
 
-1.2 Welches ist das billigste Buch in der Datenbank?
+1 Welches ist das billigste Buch in der Datenbank?
   SELECT titel, verkaufspreis
 FROM buecher
 ORDER BY verkaufspreis ASC
 LIMIT 1;
 
-1.3 Lassen Sie sich alle Bücher ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis aller Bücher in der Datenbank liegt.
+1 Lassen Sie sich alle Bücher ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis aller Bücher in der Datenbank liegt.
 
 SELECT titel, einkaufspreis
 FROM buecher
 WHERE einkaufspreis > (SELECT AVG(einkaufspreis) FROM buecher);
 
 
-  1.4 Lassen Sie sich alle Bücher ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis der Thriller liegt.
+  1 Lassen Sie sich alle Bücher ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis der Thriller liegt.
 sql.
 
 SELECT b.titel, b.einkaufspreis
@@ -193,7 +193,7 @@ WHERE s.bezeichnung = 'Thriller'
                          WHERE s2.bezeichnung = 'Thriller');
 
 
-  1.5 Lassen Sie sich alle Thriller ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis der Thriller liegt.
+  1 Lassen Sie sich alle Thriller ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis der Thriller liegt.
 
   SELECT b.titel, b.einkaufspreis
 FROM buecher b
@@ -207,7 +207,7 @@ WHERE s.bezeichnung = 'Thriller'
                          WHERE s2.bezeichnung = 'Thriller');
 
 
-  1.6 Lassen Sie sich alle Bücher ausgeben, bei denen der Gewinn überdurchschnittlich ist; bei der Berechnung des Gewinndurchschnitts berücksichtigen Sie NICHT das Buch mit der id 22.
+  1 Lassen Sie sich alle Bücher ausgeben, bei denen der Gewinn überdurchschnittlich ist; bei der Berechnung des Gewinndurchschnitts berücksichtigen Sie NICHT das Buch mit der id 22.
 
   SELECT titel, (verkaufspreis - einkaufspreis) AS gewinn
 FROM buecher
@@ -215,20 +215,50 @@ WHERE (verkaufspreis - einkaufspreis) > (SELECT AVG(verkaufspreis - einkaufsprei
                                          FROM buecher
                                          WHERE buecher_id != 22);
 
+Teil 2 (Subquery nach FROM)
+
+1. Summe der durchschnittlichen Einkaufspreise der Sparten (ohne Humor und Sparten mit durchschnittlichem Einkaufspreis ≤ 10 Euro)
+
+SELECT SUM(avg_einkaufspreis) AS sum_avg_einkaufspreis
+FROM (
+    SELECT s.bezeichnung, AVG(b.einkaufspreis) AS avg_einkaufspreis
+    FROM buecher b
+    JOIN buecher_has_sparten bhs ON b.buecher_id = bhs.buecher_buecher_id
+    JOIN sparten s ON bhs.sparten_sparten_id = s.sparten_id
+    WHERE s.bezeichnung != 'Humor'
+    GROUP BY s.bezeichnung
+    HAVING avg_einkaufspreis > 10
+) AS subquery;
+
+2. Anzahl der bekannten Autoren (mehr als 4 Bücher veröffentlicht)
+
+   SELECT COUNT(*) AS anzahl_bekannte_autoren
+FROM (
+    SELECT a.vorname, a.nachname, COUNT(ab.buecher_buecher_id) AS anzahl_buecher
+    FROM autoren a
+    JOIN autoren_has_buecher ab ON a.autoren_id = ab.autoren_autoren_id
+    GROUP BY a.autoren_id
+    HAVING anzahl_buecher > 4
+) AS subquery;
+
+3.  Verlage mit durchschnittlichem Gewinn pro Buch < 10 Euro (und Überprüfung, ob diese im Schnitt höchstens 7 Euro pro Buch verdienen)
+
+   SELECT AVG(gewinn) AS avg_gewinn
+FROM (
+    SELECT v.name, AVG(b.verkaufspreis - b.einkaufspreis) AS gewinn
+    FROM verlage v
+    JOIN buecher b ON v.verlage_id = b.verlage_verlage_id
+    GROUP BY v.verlage_id
+    HAVING gewinn < 10
+) AS subquery
+WHERE gewinn <= 7;
 
 
 
 
 
-
-
-
-
-
-
-
-
-
+  
+   
 
 
 
