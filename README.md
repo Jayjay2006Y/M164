@@ -171,19 +171,23 @@ Teil 1 (Skalare Subquery)
 
 3 Lassen Sie sich alle Bücher ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis aller Bücher in der Datenbank liegt.
 
-SELECT * FROM buecher WHERE einkaufspreis > (SELECT AVG(einkaufspreis) FROM buecher);
-SELECT b.*
-FROM buecher b
-JOIN buecher_has_sparten bs ON b.buecher_id = bs.buecher_buecher_id
-JOIN sparten s ON s.sparten_id = bs.sparten_sparten_id
-WHERE s.bezeichnung = 'Thriller';
+SELECT BekannteAutoren.vorname, BekannteAutoren.nachname, BekannteAutoren.AnzahlBuecher
+FROM (
+    SELECT a.vorname, a.nachname, COUNT(*) AS AnzahlBuecher
+    FROM autoren a
+    JOIN autoren_has_buecher ahb ON a.autoren_id = ahb.autoren_autoren_id
+    GROUP BY a.autoren_id
+    HAVING AnzahlBuecher > 4
+) AS BekannteAutoren;
+
+4.
  
 
   4 Lassen Sie sich alle Bücher ausgeben, deren Einkaufspreis über dem durchschnittlichen Einkaufspreis der Thriller liegt.
 sql.
 
 SELECT b.*
-FROM buecher b
+FROM buecher b 
 JOIN buecher_has_sparten bs ON b.buecher_id = bs.buecher_buecher_id
 JOIN sparten s ON s.sparten_id = bs.sparten_sparten_id
 WHERE s.bezeichnung = 'Thriller' AND b.einkaufspreis > (
@@ -218,7 +222,9 @@ SELECT * FROM buecher WHERE (verkaufspreis - einkaufspreis) > (SELECT AVG(verkau
 
 Teil 2 (Subquery nach FROM)
 
-1.SELECT SUM(avg_price)
+1. Wir brauchen die Summe der durchschnittlichen Einkaufspreise der einzelnen Sparten. Allerdings wollen wir dabei nicht die Sparte Humor berücksichtigen, ebenso wenig die Sparten, in denen der durchschnittliche Einkaufspreis 10 Euro oder weniger beträgt.
+
+SELECT SUM(avg_price)
 FROM (
     SELECT s.bezeichnung, AVG(b.einkaufspreis) as avg_price
     FROM buecher b
@@ -252,6 +258,15 @@ FROM (
     HAVING gewinn < 10
 ) AS subquery
 WHERE gewinn <= 7;
+
+4.  
+SELECT AVG(gewinn_pro_buch) AS 'Durchschnittlicher Gewinn pro Buch der Verlage, die weniger als 10 Euro pro Buch verdienen'
+FROM (
+    SELECT verlage_verlage_id, AVG(verkaufspreis - einkaufspreis) AS gewinn_pro_buch
+    FROM buecher
+    GROUP BY verlage_verlage_id
+    HAVING gewinn_pro_buch < 10
+) AS subselect;
 
 
 Auftrag mit Tutorial
