@@ -254,8 +254,13 @@ FROM (
 WHERE gewinn <= 7;
 
 
+Auftrag mit Tutorial
 
-
+1. Tutorisl
+2. Welcher Zeichensatz ist standardmässig bei ihrem DBMS eingestellt?
+   MySQL
+3. Versuchen Sie, das CSV File Personen in eine Tabelle einzulesen. Untersuchen Sie die CSV-Datei zuerst: Trennzeichen(Delimiter), ", Spaltennamen, Zeichensatz, Datumformat, ...
+   Untersuchen
 
   
    
