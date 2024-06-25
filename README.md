@@ -1,4 +1,4 @@
-# M164
+bb# M164
 
 ## Aufgaben Recap Fragen Kellenberger
 
@@ -309,6 +309,27 @@ IGNORE 1 LINES in LOAD DATA INFILE: Ignoriert die erste Zeile einer Datei beim I
 Tag 7.
 
 Datenbanksysteme sind essenziell für die Funktion von Websites und Unternehmenssoftware, da sie wichtige Informationen speichern und bereitstellen. Ein Datenverlust kann durch Hardwarefehler oder Benutzerfehler verursacht werden und schwerwiegende Folgen wie Funktionsausfälle und Vertrauensverlust nach sich ziehen. Um Datenverluste zu vermeiden, sollten regelmäßig Backups auf externen und geschützten Speichermedien erstellt werden, wobei zwischen Online- und Offline-Backups sowie verschiedenen Sicherungsmethoden wie Voll-, differentiellen und inkrementellen Backups unterschieden wird. Tools wie MySQLDump, phpMyAdmin und Mariabackup helfen bei der Sicherung und Wiederherstellung von Datenbanken. Es ist sinnvoll, einen speziellen Backup-Benutzer für logische Backups einzurichten, um die Datensicherheit weiter zu erhöhen.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
